@@ -1,5 +1,7 @@
+import { ChatWrapper } from "@/components/ChatWrapper";
 import { ragChat } from "@/lib/rag-chat";
 import { redis } from "@/lib/redis";
+import { cookies } from "next/headers";
 
 const reconstructUrl = ({ url }: { url: string[] }) => {
   const decodedUrls = url.map((url) => decodeURIComponent(url));
@@ -17,8 +19,8 @@ export default async function Page({
   const urls = reconstructUrl({ url: url as string[] });
   const isAlreadyIndexed = await redis.sismember("indexed-urls", urls);
   if (!isAlreadyIndexed) {
-    console.log("first")
-    await ragChat.context.add({
+    console.log("first");
+    const response = await ragChat.context.add({
       type: "html",
       source: urls,
       config: {
@@ -28,5 +30,13 @@ export default async function Page({
     });
     await redis.sadd("indexed-urls", urls);
   }
-  return <div>Hello Yeahhh</div>;
+  const sessionId = (await cookies()).get("sessionId")?.value;
+
+  if (sessionId) {
+    return (
+      <div>
+        <ChatWrapper sessionId={sessionId as string} />
+      </div>
+    );
+  }
 }
