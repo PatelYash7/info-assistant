@@ -19,8 +19,7 @@ export default async function Page({
   const urls = reconstructUrl({ url: url as string[] });
   const isAlreadyIndexed = await redis.sismember("indexed-urls", urls);
   if (!isAlreadyIndexed) {
-    console.log("first");
-    const response = await ragChat.context.add({
+    await ragChat.context.add({
       type: "html",
       source: urls,
       config: {
