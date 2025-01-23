@@ -36,7 +36,7 @@ export const LandingInput = () => {
           <div className="mt-3 sm:mt-0 sm:ml-3">
             <Button
               type="submit"
-              className="block w-full rounded-md px-4 py-3 bg-blue-500 text-white shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 sm:w-auto"
+              className="block w-full rounded-md px-4 bg-blue-500 text-white shadow hover:bg-blue-600 focus:outline-none focus:ring-2 shadow-blue-700 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 sm:w-auto"
             >
               Explore
             </Button>
