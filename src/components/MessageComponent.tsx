@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { cn } from "@/lib/utils";
 import type { Message } from "ai";
 import { Bot, MessageSquare, User } from "lucide-react";
@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
 interface MessageComponentProps {
   messages: Message[];
   initialMessages: Message[];
-  isLoading:boolean;
+  isLoading: boolean;
 }
 
 export default function MessageComponent({
@@ -15,14 +15,14 @@ export default function MessageComponent({
   isLoading,
   initialMessages,
 }: MessageComponentProps) {
-  const messagesRef = useRef<HTMLDivElement|null>(null);
-  useEffect(()=>{
-    if(messagesRef.current){
-        messagesRef.current.scrollIntoView({behavior:"smooth"})
+  const messagesRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (messagesRef.current) {
+      messagesRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  },[messages,initialMessages])
+  }, [messages, initialMessages]);
   return (
-    <div  className="space-y-4">
+    <div className="space-y-4">
       {initialMessages.length > 0 ? (
         initialMessages.map((message) => (
           <div
@@ -61,18 +61,7 @@ export default function MessageComponent({
           </div>
         </div>
       )}
-      {
-        isLoading && <div>
-            <div className="animate-pulse flex justify-start">
-                <div className="max-w-md p-4 rounded-lg bg-gray-700 text-gray-100">
-                <p className="text-sm font-semibold mb-1">
-                    <Bot className="size-8" />
-                </p>
-                <p>Loading...</p>
-                </div>
-            </div>
-        </div>
-      }
+
       {messages.map((message) => (
         <div
           key={message.id}
@@ -101,6 +90,18 @@ export default function MessageComponent({
           </div>
         </div>
       ))}
+      {isLoading && (
+        <div>
+          <div className="animate-pulse flex justify-start">
+            <div className="max-w-md p-4 rounded-lg bg-gray-700 text-gray-100">
+              <p className="text-sm font-semibold mb-1">
+                <Bot className="size-8" />
+              </p>
+              <p>Loading...</p>
+            </div>
+          </div>
+        </div>
+      )}
       <div ref={messagesRef}></div>
     </div>
   );
