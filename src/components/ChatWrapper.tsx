@@ -3,7 +3,6 @@
 import { Message, useChat } from "ai/react";
 import MessageComponent from "./MessageComponent";
 import InputComponent from "./InputComponent";
-import { error } from "console";
 import { useState } from "react";
 
 export const ChatWrapper = ({

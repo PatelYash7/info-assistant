@@ -1,7 +1,6 @@
 import { ragChat } from "@/lib/rag-chat";
 import { aiUseChatAdapter } from "@upstash/rag-chat/nextjs";
-import { error } from "console";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 export const POST = async (req: NextRequest) => {
   try {
