@@ -8,10 +8,12 @@ interface MessageComponentProps {
   messages: Message[];
   initialMessages: Message[];
   isLoading: boolean;
+  error:string;
 }
 
 export default function MessageComponent({
   messages,
+  error,
   isLoading,
   initialMessages,
 }: MessageComponentProps) {
@@ -61,7 +63,9 @@ export default function MessageComponent({
           </div>
         </div>
       )}
-
+        {
+          error && <div>{error}</div>
+        }
       {messages.map((message) => (
         <div
           key={message.id}
@@ -97,7 +101,10 @@ export default function MessageComponent({
               <p className="text-sm font-semibold mb-1">
                 <Bot className="size-8" />
               </p>
+
+              
               <p>Loading...</p>
+              <p>if it takes too long to respond then it might be due to token limit reached.</p>
             </div>
           </div>
         </div>
